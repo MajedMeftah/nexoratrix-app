@@ -1,3 +1,7 @@
+# NexoraTrix - المرحلة 1: النواة الأساسية (Core Engine)
+# هذا الملف يمثل نقطة البداية لتطبيق FastAPI ويحتوي على صفحة رئيسية وروابط للوحدات الأساسية.
+# المرحلة الحالية: إعداد النواة الأساسية والتوثيق الأولي.
+
 from fastapi import FastAPI, Request, Form, Depends, Query
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
@@ -19,18 +23,19 @@ engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(bind=engine, autoflush=False)
 Base = declarative_base()
 
-# نموذج بيانات العميل
+# نموذج بيانات العميل (Client Model)
 class Client(Base):
     __tablename__ = "clients"
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True)
-    type = Column(String)
-    settings = Column(String)
-    visits = Column(Integer, default=0)  # عدد زيارات صفحة العميل
+    name = Column(String, nullable=False)
+    type = Column(String, nullable=False)
+    settings = Column(String, default="")
+    visits = Column(Integer, default=0)
 
 # إنشاء الجداول في قاعدة البيانات
 Base.metadata.create_all(bind=engine)
 
+# دالة لجلب جلسة قاعدة البيانات
 def get_db():
     db = SessionLocal()
     try:
@@ -38,8 +43,20 @@ def get_db():
     finally:
         db.close()
 
-# الصفحة الرئيسية
+# NexoraTrix - المرحلة 1: النواة الأساسية (Core Engine)
+# هذا الملف يمثل نقطة البداية لتطبيق FastAPI ويحتوي على صفحة رئيسية وروابط للوحدات الأساسية.
+# المرحلة الحالية: إعداد النواة الأساسية والتوثيق الأولي.
+
 @app.get("/", response_class=HTMLResponse)
+def home(request: Request):
+    # صفحة رئيسية تعرض ملخص وروابط للوحدات
+    return templates.TemplateResponse("index.html", {
+        "request": request,
+        "platform_name": platform_settings["name"],
+        "main_color": platform_settings["main_color"]
+    })
+
+@app.get("/dashboard", response_class=HTMLResponse)
 def dashboard(
     request: Request,
     db: Session = Depends(get_db),
@@ -47,11 +64,15 @@ def dashboard(
     client_deleted: bool = Query(False)
 ):
     clients = db.query(Client).all()
+    client_count = db.query(Client).count()
+    active_modules = 4  # Content Studio, Sentiment Analyzer, Social Sync, Performance Monitor
     return templates.TemplateResponse(
         "dashboard.html",
         {
             "request": request,
             "clients": clients,
+            "client_count": client_count,
+            "active_modules": active_modules,
             "client_added": client_added,
             "client_deleted": client_deleted
         }
@@ -89,7 +110,14 @@ def client_details(client_id: int, request: Request, db: Session = Depends(get_d
     # زيادة عدد الزيارات عند كل دخول للصفحة
     client.visits = (client.visits or 0) + 1
     db.commit()
-    return templates.TemplateResponse("client_details.html", {"request": request, "client": client})
+    # Tabs لكل وحدة ذكية
+    modules_tabs = [
+        {"name": "Content Studio", "url": f"/content-studio?client_id={client_id}"},
+        {"name": "Sentiment Analyzer", "url": f"/sentiment-analyzer?client_id={client_id}"},
+        {"name": "Social Sync", "url": f"/social-sync?client_id={client_id}"},
+        {"name": "Performance Monitor", "url": f"/performance-monitor?client_id={client_id}"}
+    ]
+    return templates.TemplateResponse("client_details.html", {"request": request, "client": client, "modules_tabs": modules_tabs})
 
 @app.post("/delete-client/{client_id}")
 def delete_client(client_id: int, db: Session = Depends(get_db)):
