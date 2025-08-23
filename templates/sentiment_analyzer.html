@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment Analyzer - NexoraTrix</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #1E1E2F; color: #CFCFCF; }
+        .container { max-width: 600px; margin: 40px auto; background: #232347; border-radius: 12px; padding: 32px; box-shadow: 0 4px 24px #4B00B522; }
+        h1 { color: #FF5E5B; }
+        form { margin-top: 24px; }
+        textarea { width: 80%; padding: 8px; border-radius: 6px; border: none; margin-right: 8px; min-height: 60px; }
+        button { background: #00C2A8; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+        .result { margin-top: 32px; background: #1E1E2F; padding: 16px; border-radius: 8px; color: #FF5E5B; }
+        .back { margin-top: 24px; display: block; color: #FF5E5B; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Analyzer</h1>
+        <form method="post" action="/sentiment-analyzer">
+            <textarea name="text" placeholder="أدخل نص لتحليل المشاعر..." required>{{ text }}</textarea>
+            <button type="submit">تحليل المشاعر</button>
+        </form>
+        {% if result %}
+        <div class="result">
+            <strong>نتيجة التحليل:</strong>
+            <p>{{ result }}</p>
+        </div>
+        {% endif %}
+        <a href="/" class="back">عودة للوحة التحكم</a>
+    </div>
+</body>
+</html>

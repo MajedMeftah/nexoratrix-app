@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Content Studio - NexoraTrix</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #1E1E2F; color: #CFCFCF; }
+        .container { max-width: 600px; margin: 40px auto; background: #232347; border-radius: 12px; padding: 32px; box-shadow: 0 4px 24px #4B00B522; }
+        h1 { color: #4B00B5; }
+        form { margin-top: 24px; }
+        input[type="text"] { width: 80%; padding: 8px; border-radius: 6px; border: none; margin-right: 8px; }
+        button { background: #00C2A8; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+        .output { margin-top: 32px; background: #1E1E2F; padding: 16px; border-radius: 8px; color: #FF5E5B; }
+        .back { margin-top: 24px; display: block; color: #FF5E5B; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Content Studio</h1>
+        <form method="post" action="/content-studio">
+            <input type="text" name="prompt" placeholder="أدخل فكرة أو موضوع..." required value="{{ prompt if prompt }}">
+            <button type="submit">توليد المحتوى</button>
+        </form>
+        {% if output %}
+        <div class="output">
+            <strong>المحتوى المولّد:</strong>
+            <p>{{ output }}</p>
+        </div>
+        {% endif %}
+        <a href="/about" class="back">حول NexoraTrix</a>
+        <a href="/" class="back">عودة للوحة التحكم</a>
+    </div>
+</body>
+</html>

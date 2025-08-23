@@ -1,0 +1,78 @@
+/* ...existing code... */
+
+body {
+  background-color: #f9f9f9;
+  font-family: 'Roboto', 'Poppins', Arial, sans-serif;
+  direction: rtl;
+  color: #1E1E2F;
+}
+
+a {
+  color: #4B00B5;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #00C2A8;
+  text-decoration: underline;
+}
+
+.header-title {
+  font-family: 'Poppins', Arial, sans-serif;
+  color: #4B00B5;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(75,0,181,0.07);
+  padding: 1.5rem;
+  margin: 1.5rem auto;
+  max-width: 800px;
+  border: 1px solid #CFCFCF;
+}
+
+.about-card, .roadmap-card {
+    background: rgba(255,255,255,0.85);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(75,0,181,0.08);
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 900px;
+    direction: rtl;
+    font-family: 'Roboto', 'Poppins', Arial, sans-serif;
+    color: #1E1E2F;
+    border: 2px solid #4B00B5;
+}
+
+.about-card h2, .roadmap-card h2 {
+    color: #4B00B5;
+    font-family: 'Poppins', Arial, sans-serif;
+    margin-bottom: 1rem;
+}
+
+.about-card pre, .roadmap-card pre {
+    background: #F7F7FF;
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    white-space: pre-wrap;
+    color: #1E1E2F;
+    margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .card,
+  .about-card,
+  .roadmap-card {
+    padding: 1rem;
+    margin: 1rem;
+    max-width: 98vw;
+  }
+  .header-title {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,39 @@
+/* ...يمكنك إضافة أي تخصيصات إضافية هنا... */
+
+.about-card, .roadmap-card {
+    background: rgba(255,255,255,0.85);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(75,0,181,0.08);
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 900px;
+    direction: rtl;
+    font-family: 'Roboto', 'Poppins', Arial, sans-serif;
+    color: #1E1E2F;
+    border: 2px solid #4B00B5;
+}
+
+.about-card h2, .roadmap-card h2 {
+    color: #4B00B5;
+    font-family: 'Poppins', Arial, sans-serif;
+    margin-bottom: 1rem;
+}
+
+.about-card pre, .roadmap-card pre {
+    background: #F7F7FF;
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    white-space: pre-wrap;
+    color: #1E1E2F;
+    margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+    .about-card, .roadmap-card {
+        padding: 1rem;
+        margin: 1rem;
+        max-width: 98vw;
+    }
+}

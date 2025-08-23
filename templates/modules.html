@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إدارة الوحدات - NexoraTrix</title>
+    <style>
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background: #1E1E2F; 
+            color: #CFCFCF; 
+            direction: rtl;
+            text-align: right;
+        }
+        .container { 
+            max-width: 1000px; 
+            margin: 40px auto; 
+            background: #232347; 
+            border-radius: 12px; 
+            padding: 32px; 
+            box-shadow: 0 4px 24px #4B00B522; 
+        }
+        h1 { 
+            color: #4B00B5; 
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        h2 {
+            color: #00C2A8;
+            border-bottom: 2px solid #00C2A8;
+            padding-bottom: 8px;
+            margin-top: 32px;
+        }
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+        .module-card {
+            background: #1E1E2F;
+            border-radius: 8px;
+            padding: 20px;
+            border: 2px solid #333;
+            transition: all 0.3s ease;
+        }
+        .module-card:hover {
+            border-color: #4B00B5;
+            transform: translateY(-2px);
+        }
+        .module-card.active {
+            border-color: #00C2A8;
+            background: #1E2F1E;
+        }
+        .module-card.inactive {
+            border-color: #FF5E5B;
+            background: #2F1E1E;
+            opacity: 0.7;
+        }
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .module-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #CFCFCF;
+        }
+        .module-status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .status-active {
+            background: #00C2A8;
+            color: #1E1E2F;
+        }
+        .status-inactive {
+            background: #FF5E5B;
+            color: #fff;
+        }
+        .status-development {
+            background: #FFB347;
+            color: #1E1E2F;
+        }
+        .module-description {
+            color: #999;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        .module-features {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+        .module-features li {
+            padding: 4px 0;
+            color: #CFCFCF;
+        }
+        .module-features li:before {
+            content: "✓ ";
+            color: #00C2A8;
+            font-weight: bold;
+        }
+        .module-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .button {
+            background: #4B00B5;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            text-align: center;
+        }
+        .button:hover {
+            background: #6B20D5;
+        }
+        .button.secondary {
+            background: #333;
+        }
+        .button.secondary:hover {
+            background: #555;
+        }
+        .button.success {
+            background: #00C2A8;
+        }
+        .button.success:hover {
+            background: #20E2C8;
+        }
+        .button.danger {
+            background: #FF5E5B;
+        }
+        .button.danger:hover {
+            background: #FF7E7B;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .nav-buttons .button {
+            margin: 0 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧩 إدارة الوحدات الذكية</h1>
+        
+        <div class="nav-buttons">
+            <a href="/" class="button secondary">🏠 العودة للوحة التحكم</a>
+            <a href="/roadmap" class="button secondary">🗺️ خارطة الطريق</a>
+            <a href="/stats" class="button secondary">📊 الإحصائيات</a>
+        </div>
+
+        <h2>🔧 الوحدات الأساسية المتاحة</h2>
+        <div class="modules-grid">
+            <div class="module-card active">
+                <div class="module-header">
+                    <div class="module-title">🎨 Content Studio</div>
+                    <div class="module-status status-active">نشط</div>
+                </div>
+                <div class="module-description">
+                    وحدة توليد المحتوى النصي والمرئي تلقائياً باستخدام الذكاء الاصطناعي. تدعم إنتاج المقالات، المنشورات، والعناوين الإبداعية.
+                </div>
+                <ul class="module-features">
+                    <li>توليد محتوى نصي متقدم</li>
+                    <li>دعم اللغة العربية والإنجليزية</li>
+                    <li>قوالب محتوى متنوعة</li>
+                    <li>تحسين SEO تلقائي</li>
+                </ul>
+                <div class="module-actions">
+                    <a href="/content-studio" class="button success">🚀 تشغيل الوحدة</a>
+                    <button class="button secondary">⚙️ إعدادات</button>
+                </div>
+            </div>
+
+            <div class="module-card active">
+                <div class="module-header">
+                    <div class="module-title">💬 Sentiment Analyzer</div>
+                    <div class="module-status status-active">نشط</div>
+                </div>
+                <div class="module-description">
+                    وحدة تحليل المشاعر في النصوص العربية والإنجليزية. تساعد في فهم ردود الأفعال والآراء من التعليقات والمراجعات.
+                </div>
+                <ul class="module-features">
+                    <li>تحليل مشاعر دقيق</li>
+                    <li>دعم النصوص العربية</li>
+                    <li>تقارير تفصيلية</li>
+                    <li>تحليل الكلمات المفتاحية</li>
+                </ul>
+                <div class="module-actions">
+                    <a href="/sentiment-analyzer" class="button success">🚀 تشغيل الوحدة</a>
+                    <button class="button secondary">⚙️ إعدادات</button>
+                </div>
+            </div>
+
+            <div class="module-card active">
+                <div class="module-header">
+                    <div class="module-title">📱 Social Sync Engine</div>
+                    <div class="module-status status-active">نشط</div>
+                </div>
+                <div class="module-description">
+                    وحدة نشر وإدارة المحتوى على المنصات الاجتماعية المختلفة. تدعم الجدولة التلقائية وتحليل الأداء.
+                </div>
+                <ul class="module-features">
+                    <li>نشر متعدد المنصات</li>
+                    <li>جدولة المحتوى</li>
+                    <li>تحليل الأداء</li>
+                    <li>إدارة الحسابات</li>
+                </ul>
+                <div class="module-actions">
+                    <a href="/social-sync" class="button success">🚀 تشغيل الوحدة</a>
+                    <button class="button secondary">⚙️ إعدادات</button>
+                </div>
+            </div>
+
+            <div class="module-card active">
+                <div class="module-header">
+                    <div class="module-title">📊 Performance Monitor</div>
+                    <div class="module-status status-active">نشط</div>
+                </div>
+                <div class="module-description">
+                    وحدة مراقبة أداء العملاء والنظام. تعرض إحصائيات مفصلة حول الاستخدام والزيارات والفعالية.
+                </div>
+                <ul class="module-features">
+                    <li>مراقبة الأداء في الوقت الفعلي</li>
+                    <li>تقارير مفصلة</li>
+                    <li>تتبع الزيارات</li>
+                    <li>تحليل الاستخدام</li>
+                </ul>
+                <div class="module-actions">
+                    <a href="/performance-monitor" class="button success">🚀 تشغيل الوحدة</a>
+                    <button class="button secondary">⚙️ إعدادات</button>
+                </div>
+            </div>
+        </div>
+
+        <h2>🚧 الوحدات قيد التطوير</h2>
+        <div class="modules-grid">
+            <div class="module-card inactive">
+                <div class="module-header">
+                    <div class="module-title">🧠 Self-Tuning Engine</div>
+                    <div class="module-status status-development">قيد التطوير</div>
+                </div>
+                <div class="module-description">
+                    محرك التعلم الذاتي والتحسين التلقائي لأداء النظام بناءً على تفاعل المستخدمين والبيانات المجمعة.
+                </div>
+                <ul class="module-features">
+                    <li>تعلم من سلوك المستخدمين</li>
+                    <li>تحسين الاستجابات تلقائياً</li>
+                    <li>تكيف مع التفضيلات</li>
+                    <li>تحليل الأنماط</li>
+                </ul>
+                <div class="module-actions">
+                    <button class="button secondary" disabled>🔒 غير متاح</button>
+                    <button class="button secondary">⚙️ إعدادات</button>
+                </div>
+            </div>
+
+            <div class="module-card inactive">
+                <div class="module-header">
+                    <div class="module-title">🌐 Internet Learning Core</div>
+                    <div class="module-status status-development">قيد التطوير</div>
+                </div>
+                <div class="module-description">
+                    نواة التعلم من الإنترنت والحصول على معلومات محدثة من مصادر موثوقة ودمجها في النظام.
+                </div>
+                <ul class="module-features">
+                    <li>جلب البيانات من الإنترنت</li>
+                    <li>تحديث المعرفة تلقائياً</li>
+                    <li>مصادر موثوقة</li>
+                    <li>تصفية المحتوى</li>
+                </ul>
+                <div class="module-actions">
+                    <button class="button secondary" disabled>🔒 غير متاح</button>
+                    <button class="button secondary">⚙️ إعدادات</button>
+                </div>
+            </div>
+
+            <div class="module-card inactive">
+                <div class="module-header">
+                    <div class="module-title">🎤 Voice & Emotion Analyzer</div>
+                    <div class="module-status status-development">قيد التطوير</div>
+                </div>
+                <div class="module-description">
+                    وحدة تحليل الصوت والانفعالات من الكلام للتفاعل الطبيعي والذكي مع المستخدمين.
+                </div>
+                <ul class="module-features">
+                    <li>تحليل نبرة الصوت</li>
+                    <li>كشف الانفعالات</li>
+                    <li>تحويل الكلام لنص</li>
+                    <li>ردود ذكية</li>
+                </ul>
+                <div class="module-actions">
+                    <button class="button secondary" disabled>🔒 غير متاح</button>
+                    <button class="button secondary">⚙️ إعدادات</button>
+                </div>
+            </div>
+
+            <div class="module-card inactive">
+                <div class="module-header">
+                    <div class="module-title">⚖️ Legal Insight Engine</div>
+                    <div class="module-status status-development">قيد التطوير</div>
+                </div>
+                <div class="module-description">
+                    محرك التحليل القانوني الذكي لفهم وتحليل الوثائق القانونية وتقديم استشارات مبدئية.
+                </div>
+                <ul class="module-features">
+                    <li>تحليل الوثائق القانونية</li>
+                    <li>استشارات مبدئية</li>
+                    <li>قاعدة بيانات قانونية</li>
+                    <li>تلخيص القوانين</li>
+                </ul>
+                <div class="module-actions">
+                    <button class="button secondary" disabled>🔒 غير متاح</button>
+                    <button class="button secondary">⚙️ إعدادات</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding: 24px; background: #1E1E2F; border-radius: 8px;">
+            <h2 style="color: #FF5E5B; margin-bottom: 16px;">📦 إضافة وحدات جديدة</h2>
+            <p style="color: #CFCFCF; margin-bottom: 20px;">
+                يمكنك إضافة وحدات جديدة من خلال متجر الإضافات أو تطوير وحدات مخصصة.
+            </p>
+            <button class="button" disabled>🛒 متجر الإضافات (قريباً)</button>
+            <button class="button secondary" disabled>⚡ إنشاء وحدة مخصصة (قريباً)</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>Social Sync Engine - NexoraTrix</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #1E1E2F; color: #CFCFCF; }
+        .container { max-width: 600px; margin: 40px auto; background: #232347; border-radius: 12px; padding: 32px; box-shadow: 0 4px 24px #4B00B522; }
+        h1 { color: #4B00B5; }
+        form { margin-top: 24px; }
+        textarea, select { width: 80%; padding: 8px; border-radius: 6px; border: none; margin-bottom: 8px; }
+        button { background: #4B00B5; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+        .result { margin-top: 32px; background: #1E1E2F; padding: 16px; border-radius: 8px; color: #00C2A8; }
+        .back { margin-top: 24px; display: block; color: #FF5E5B; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Social Sync Engine</h1>
+        <form method="post" action="/social-sync">
+            <textarea name="content" placeholder="أدخل المحتوى للنشر..." required>{{ content }}</textarea><br>
+            <select name="platform" required>
+                <option value="">اختر المنصة</option>
+                <option value="Twitter" {% if platform=="Twitter" %}selected{% endif %}>Twitter</option>
+                <option value="Facebook" {% if platform=="Facebook" %}selected{% endif %}>Facebook</option>
+                <option value="Instagram" {% if platform=="Instagram" %}selected{% endif %}>Instagram</option>
+                <option value="LinkedIn" {% if platform=="LinkedIn" %}selected{% endif %}>LinkedIn</option>
+            </select><br>
+            <button type="submit">نشر المحتوى</button>
+        </form>
+        {% if result %}
+        <div class="result">
+            <strong>نتيجة النشر:</strong>
+            <p>{{ result }}</p>
+        </div>
+        {% endif %}
+        <a href="/" class="back">عودة للوحة التحكم</a>
+    </div>
+</body>
+</html>

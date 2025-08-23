@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>إدارة العملاء</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+  <h1 class="text-2xl font-bold mb-4">📋 قائمة العملاء</h1>
+  <table class="table-auto w-full bg-white shadow-md rounded">
+    <thead class="bg-gray-200">
+      <tr>
+        <th class="px-4 py-2">الاسم</th>
+        <th class="px-4 py-2">النوع</th>
+        <th class="px-4 py-2">الحالة</th>
+        <th class="px-4 py-2">إجراءات</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for client in clients %}
+      <tr class="border-t">
+        <td class="px-4 py-2">{{ client.name }}</td>
+        <td class="px-4 py-2">{{ client.type }}</td>
+        <td class="px-4 py-2">{{ client.status }}</td>
+        <td class="px-4 py-2">
+          <a href="/client/{{ client.id }}" class="text-blue-500">تفاصيل</a> |
+          <a href="#" class="text-blue-500">تعديل</a> |
+          <a href="#" class="text-red-500">حذف</a>
+        </td>
+      </tr>
+      <tr class="border-t bg-gray-50">
+        <td class="px-4 py-2 text-xs text-gray-500" colspan="4">
+          إعدادات: {{ client.settings }} | زيارات: {{ client.visits }}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

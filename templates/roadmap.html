@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>خارطة طريق NexoraTrix</title>
+    <style>
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background: #1E1E2F; 
+            color: #CFCFCF; 
+            direction: rtl;
+            text-align: right;
+        }
+        .container { 
+            max-width: 900px; 
+            margin: 40px auto; 
+            background: #232347; 
+            border-radius: 12px; 
+            padding: 32px; 
+            box-shadow: 0 4px 24px #4B00B522; 
+        }
+        h1 { 
+            color: #4B00B5; 
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        h2 { 
+            color: #00C2A8; 
+            border-bottom: 2px solid #00C2A8;
+            padding-bottom: 8px;
+            margin-top: 32px;
+        }
+        .phase {
+            background: #1E1E2F;
+            margin: 16px 0;
+            padding: 16px;
+            border-radius: 8px;
+            border-right: 4px solid #4B00B5;
+        }
+        .phase.completed {
+            border-right-color: #00C2A8;
+            background: #1E2F1E;
+        }
+        .phase.current {
+            border-right-color: #FF5E5B;
+            background: #2F1E1E;
+        }
+        .phase-title {
+            font-weight: bold;
+            color: #CFCFCF;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+        .phase-goal {
+            color: #00C2A8;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+        .phase-tasks {
+            color: #CFCFCF;
+            line-height: 1.6;
+        }
+        .nav-button {
+            background: #4B00B5;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 8px 8px 8px 0;
+        }
+        .nav-button:hover {
+            background: #6B20D5;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        .completed-badge {
+            background: #00C2A8;
+            color: #1E1E2F;
+        }
+        .current-badge {
+            background: #FF5E5B;
+            color: #fff;
+        }
+        .future-badge {
+            background: #333;
+            color: #CFCFCF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 خارطة طريق برمجة مشروع NexoraTrix</h1>
+        
+        <div style="text-align: center; margin-bottom: 32px;">
+            <a href="/" class="nav-button">🏠 العودة للوحة التحكم</a>
+            <a href="/about" class="nav-button">📘 حول المشروع</a>
+            <a href="/stats" class="nav-button">📊 الإحصائيات</a>
+        </div>
+
+        <div class="phase completed">
+            <div class="phase-title">
+                🟢 المرحلة 0: التحضير والتأسيس
+                <span class="status-badge completed-badge">مكتملة</span>
+            </div>
+            <div class="phase-goal">الهدف: تهيئة بيئة التطوير، تحديد الأدوات، وتثبيت الأساسيات.</div>
+            <div class="phase-tasks">
+                ✅ إنشاء مستودع GitHub<br>
+                ✅ إعداد مشروع FastAPI محليًا<br>
+                ✅ اختيار محرر وبيئة Python<br>
+                ✅ إنشاء ملف requirements.txt<br>
+                ✅ رفع المشروع إلى GitHub وربطه بـ Railway
+            </div>
+        </div>
+
+        <div class="phase completed">
+            <div class="phase-title">
+                🟡 المرحلة 1: النواة الأساسية (Core Engine)
+                <span class="status-badge completed-badge">مكتملة</span>
+            </div>
+            <div class="phase-goal">الهدف: بناء التطبيق الأساسي الذي يستقبل الطلبات ويعرض واجهة أولية.</div>
+            <div class="phase-tasks">
+                ✅ إعداد ملف main.py وتشغيل FastAPI<br>
+                ✅ إنشاء صفحة HTML رئيسية باستخدام Jinja2<br>
+                ✅ اختبار النشر على الرابط العام
+            </div>
+        </div>
+
+        <div class="phase current">
+            <div class="phase-title">
+                🟠 المرحلة 2: إدارة العملاء (AI Client Factory)
+                <span class="status-badge current-badge">قيد التطوير</span>
+            </div>
+            <div class="phase-goal">الهدف: تمكين المستخدم من إنشاء "عميل ذكي" مخصص.</div>
+            <div class="phase-tasks">
+                ✅ إنشاء نموذج بيانات Client<br>
+                ✅ إعداد قاعدة بيانات SQLite<br>
+                ✅ إنشاء واجهة لإنشاء وتعديل العملاء<br>
+                ✅ تخزين إعدادات كل عميل في DB<br>
+                ✅ عرض قائمة العملاء في لوحة التحكم
+            </div>
+        </div>
+
+        <div class="phase current">
+            <div class="phase-title">
+                🔵 المرحلة 3: لوحة التحكم (Admin Dashboard)
+                <span class="status-badge current-badge">قيد التطوير</span>
+            </div>
+            <div class="phase-goal">الهدف: واجهة رسومية لإدارة كل شيء: العملاء، الوحدات، الإعدادات.</div>
+            <div class="phase-tasks">
+                ✅ تصميم واجهة باستخدام HTML + CSS<br>
+                ✅ عرض إحصائيات عامة (عدد العملاء، الوحدات النشطة)<br>
+                🔄 إضافة Tabs لكل وحدة داخل صفحة العميل<br>
+                🔄 دعم التعديل والحذف والتفعيل/التعطيل
+            </div>
+        </div>
+
+        <div class="phase completed">
+            <div class="phase-title">
+                🟣 المرحلة 4: الوحدات الذكية الأساسية
+                <span class="status-badge completed-badge">مكتملة جزئياً</span>
+            </div>
+            <div class="phase-goal">الهدف: إضافة أول مجموعة من الوحدات الذكية التي تشكل قيمة المشروع.</div>
+            <div class="phase-tasks">
+                ✅ Content Studio: توليد محتوى نصي ومرئي<br>
+                ✅ Sentiment Analyzer: تحليل المشاعر في النصوص<br>
+                ✅ Social Sync Engine: نشر المحتوى على المنصات<br>
+                ✅ Performance Monitor: مراقبة أداء كل عميل
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-title">
+                🟤 المرحلة 5: التعلم الذاتي والاتصال بالإنترنت
+                <span class="status-badge future-badge">مستقبلية</span>
+            </div>
+            <div class="phase-goal">الهدف: جعل العملاء يتعلمون من التفاعل ويجلبون معرفة جديدة.</div>
+            <div class="phase-tasks">
+                🔮 Self-Tuning Engine<br>
+                🔮 Internet Learning Core<br>
+                🔮 Crowd Learning Module<br>
+                🔮 تخزين سجل التفاعل لكل عميل<br>
+                🔮 تحليل الأنماط وتعديل الاستجابات تلقائيًا
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-title">
+                ⚫ المرحلة 6: التوسع والتخصيص
+                <span class="status-badge future-badge">مستقبلية</span>
+            </div>
+            <div class="phase-goal">الهدف: جعل النظام قابل للتوسعة عبر إضافات ووحدات جديدة.</div>
+            <div class="phase-tasks">
+                🔮 بناء Plugin & Extension Manager<br>
+                🔮 تصميم متجر داخلي للوحدات<br>
+                🔮 دعم تحميل وحدات بصيغة manifest.yaml<br>
+                🔮 إنشاء نظام نسخ وإصدارات لكل وحدة
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-title">
+                🟩 المرحلة 7: الذكاء البصري والصوتي
+                <span class="status-badge future-badge">مستقبلية</span>
+            </div>
+            <div class="phase-goal">الهدف: إضافة قدرات تحليل الصور والصوت والانفعالات.</div>
+            <div class="phase-tasks">
+                🔮 Visual Intelligence Unit<br>
+                🔮 Voice & Emotion Analyzer<br>
+                🔮 Empathetic Dialogue Engine<br>
+                🔮 استخدام مكتبات مثل OpenCV وWhisper
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-title">
+                🟥 المرحلة 8: التكامل القانوني والتعليمي والمالي
+                <span class="status-badge future-badge">مستقبلية</span>
+            </div>
+            <div class="phase-goal">الهدف: توسيع المنصة لتشمل مجالات متخصصة.</div>
+            <div class="phase-tasks">
+                🔮 Legal Insight Engine<br>
+                🔮 Learning Companion AI<br>
+                🔮 Smart Finance Advisor<br>
+                🔮 Strategic Decision Assistant
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-title">
+                🟦 المرحلة 9: النشر التجاري والتسويق
+                <span class="status-badge future-badge">مستقبلية</span>
+            </div>
+            <div class="phase-goal">الهدف: تحويل المشروع إلى منتج SaaS قابل للبيع.</div>
+            <div class="phase-tasks">
+                🔮 إعداد صفحة هبوط احترافية<br>
+                🔮 ربط بوابات الدفع (Stripe أو PayPal)<br>
+                🔮 إعداد خطط الاشتراك<br>
+                🔮 إعداد CI/CD للنشر التلقائي
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-title">
+                🧩 المرحلة 10: تحسين الأداء والأمان
+                <span class="status-badge future-badge">مستقبلية</span>
+            </div>
+            <div class="phase-goal">الهدف: ضمان استقرار المشروع وحمايته.</div>
+            <div class="phase-tasks">
+                🔮 إضافة JWT وRBAC للتحكم في الوصول<br>
+                🔮 إعداد Audit Logs<br>
+                🔮 تحسين الأداء باستخدام Caching وAsync<br>
+                🔮 اختبار شامل باستخدام pytest وmypy
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-title">
+                🧠 المرحلة 11: الإطلاق الرسمي
+                <span class="status-badge future-badge">مستقبلية</span>
+            </div>
+            <div class="phase-goal">الهدف: إطلاق NexoraTrix للعالم.</div>
+            <div class="phase-tasks">
+                🔮 نشر المشروع على VPS أو سحابة<br>
+                🔮 إطلاق حملة تسويقية أولية<br>
+                🔮 جمع التغذية الراجعة من المستخدمين<br>
+                🔮 بدء تطوير الإصدار v0.2
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding: 24px; background: #1E1E2F; border-radius: 8px;">
+            <h2 style="color: #FF5E5B; margin-bottom: 16px;">🚀 الحالة الحالية</h2>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                نحن حاليًا في <strong>المرحلة 2-3</strong> من خارطة الطريق.<br>
+                تم إنجاز النواة الأساسية وإدارة العملاء، ونعمل الآن على تطوير لوحة التحكم والوحدات الذكية.<br>
+                المشروع جاهز للانطلاق نحو المراحل المتقدمة! 🎯
+            </p>
+        </div>
+    </div>
+</body>
+</html>

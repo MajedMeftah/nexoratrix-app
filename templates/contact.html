@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>تواصل معنا - NexoraTrix</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #1E1E2F; color: #CFCFCF; }
+        .container { max-width: 500px; margin: 40px auto; background: #232347; border-radius: 12px; padding: 32px; box-shadow: 0 4px 24px #4B00B522; }
+        h1 { color: #00C2A8; }
+        form { margin-top: 24px; }
+        input, textarea { width: 90%; padding: 8px; border-radius: 6px; border: none; margin-bottom: 12px; }
+        button { background: #00C2A8; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+        .sent { margin-top: 16px; color: #00C2A8; }
+        .back { margin-top: 24px; display: block; color: #FF5E5B; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>تواصل معنا</h1>
+        <form method="post" action="/contact">
+            <input type="text" name="name" placeholder="الاسم" required><br>
+            <input type="email" name="email" placeholder="البريد الإلكتروني" required><br>
+            <textarea name="message" placeholder="رسالتك..." required></textarea><br>
+            <button type="submit">إرسال</button>
+        </form>
+        {% if sent %}
+        <div class="sent">تم إرسال رسالتك بنجاح! سنرد عليك قريباً.</div>
+        {% endif %}
+        <a href="/about" class="back">حول NexoraTrix</a>
+        <a href="/" class="back">عودة للوحة التحكم</a>
+    </div>
+</body>
+</html>

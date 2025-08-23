@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إعدادات NexoraTrix</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #1E1E2F; color: #CFCFCF; }
+        .container { max-width: 500px; margin: 40px auto; background: #232347; border-radius: 12px; padding: 32px; box-shadow: 0 4px 24px #4B00B522; }
+        h1 { color: {{ main_color }}; }
+        form { margin-top: 24px; }
+        input[type="text"], input[type="color"] { padding: 8px; border-radius: 6px; border: none; margin-bottom: 12px; width: 80%; }
+        button { background: {{ main_color }}; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+        .saved { margin-top: 16px; color: #00C2A8; }
+        .back { margin-top: 24px; display: block; color: #FF5E5B; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>إعدادات NexoraTrix</h1>
+        <form method="post" action="/settings">
+            <label>اسم المنصة:</label><br>
+            <input type="text" name="name" value="{{ name }}" required><br>
+            <label>اللون الرئيسي:</label><br>
+            <input type="color" name="main_color" value="{{ main_color }}"><br>
+            <button type="submit">حفظ الإعدادات</button>
+        </form>
+        {% if saved %}
+        <div class="saved">تم حفظ الإعدادات بنجاح!</div>
+        {% endif %}
+        <a href="/" class="back">عودة للوحة التحكم</a>
+    </div>
+</body>
+</html>

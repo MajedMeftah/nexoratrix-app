@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إحصائيات NexoraTrix</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #1E1E2F; color: #CFCFCF; }
+        .container { max-width: 500px; margin: 40px auto; background: #232347; border-radius: 12px; padding: 32px; box-shadow: 0 4px 24px #4B00B522; }
+        h1 { color: #4B00B5; }
+        .stat { margin-top: 24px; font-size: 1.2em; }
+        .back { margin-top: 24px; display: block; color: #FF5E5B; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>إحصائيات NexoraTrix</h1>
+        <div class="stat">
+            <strong>عدد العملاء:</strong> {{ client_count }}
+        </div>
+        <div class="stat">
+            <strong>عدد الوحدات النشطة:</strong> {{ active_modules }}
+        </div>
+        <a href="/" class="back">عودة للوحة التحكم</a>
+    </div>
+</body>
+</html>

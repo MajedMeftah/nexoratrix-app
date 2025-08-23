@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>NexoraTrix Admin Dashboard</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #1E1E2F; color: #CFCFCF; }
+        .container { max-width: 700px; margin: 40px auto; background: #232347; border-radius: 12px; padding: 32px; box-shadow: 0 4px 24px #4B00B522; }
+        h1 { color: #4B00B5; }
+        table { width: 100%; margin-top: 24px; border-collapse: collapse; }
+        th, td { padding: 8px 12px; border-bottom: 1px solid #333; }
+        th { background: #00C2A8; color: #1E1E2F; }
+        form { margin-top: 32px; }
+        input, select { padding: 8px; border-radius: 6px; border: none; margin-right: 8px; }
+        button { background: #FF5E5B; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Toast Message -->
+        <div id="toast" style="display:none;position:fixed;top:32px;right:32px;background:#00C2A8;color:#fff;padding:16px 32px;border-radius:8px;box-shadow:0 2px 12px #0008;font-size:1.1em;z-index:999;">
+            <span id="toast-msg"></span>
+        </div>
+        <h1>لوحة تحكم NexoraTrix</h1>
+        <div style="margin-bottom:24px;">
+            <a href="/content-studio" title="توليد محتوى نصي ومرئي تلقائياً" aria-label="Content Studio" style="background:#00C2A8; color:#fff; padding:8px 16px; border-radius:6px; text-decoration:none;">Content Studio</a>
+            <a href="/sentiment-analyzer" title="تحليل مشاعر النصوص العربية" aria-label="Sentiment Analyzer" style="background:#FF5E5B; color:#fff; padding:8px 16px; border-radius:6px; text-decoration:none; margin-right:8px;">Sentiment Analyzer</a>
+            <a href="/social-sync" title="نشر المحتوى على المنصات الاجتماعية" aria-label="Social Sync Engine" style="background:#4B00B5; color:#fff; padding:8px 16px; border-radius:6px; text-decoration:none; margin-right:8px;">Social Sync Engine</a>
+            <a href="/performance-monitor" title="مراقبة أداء العملاء وعدد الزيارات" aria-label="Performance Monitor" style="background:#00C2A8; color:#fff; padding:8px 16px; border-radius:6px; text-decoration:none; margin-right:8px;">Performance Monitor</a>
+            <a href="/modules" title="إدارة جميع الوحدات الذكية" aria-label="Modules" style="background:#4B00B5; color:#fff; padding:8px 16px; border-radius:6px; text-decoration:none; margin-right:8px;">إدارة الوحدات</a>
+            <a href="/stats" title="عرض إحصائيات عامة للمنصة" aria-label="Stats" style="background:#CFCFCF; color:#1E1E2F; padding:8px 16px; border-radius:6px; text-decoration:none; margin-right:8px;">إحصائيات عامة</a>
+            <a href="/roadmap" title="خارطة طريق تطوير المشروع" aria-label="Roadmap" style="background:#FFB347; color:#1E1E2F; padding:8px 16px; border-radius:6px; text-decoration:none; margin-right:8px;">خارطة الطريق</a>
+            <a href="/settings" title="تعديل إعدادات المنصة العامة" aria-label="Settings" style="background:#FF5E5B; color:#fff; padding:8px 16px; border-radius:6px; text-decoration:none; margin-right:8px;">إعدادات عامة</a>
+            <a href="/help" title="الدعم الفني والمساعدة" aria-label="Help" style="background:#00C2A8; color:#fff; padding:8px 16px; border-radius:6px; text-decoration:none; margin-right:8px;">الدعم الفني</a>
+            <a href="/about" title="معلومات حول NexoraTrix" aria-label="About" style="background:#4B00B5; color:#fff; padding:8px 16px; border-radius:6px; text-decoration:none; margin-right:8px;">حول المنصة</a>
+            <a href="/logout" title="تسجيل الخروج من لوحة التحكم" aria-label="Logout" style="background:#FF5E5B; color:#fff; padding:8px 16px; border-radius:6px; text-decoration:none; margin-right:8px;">تسجيل الخروج</a>
+            <a href="/contact" title="تواصل مع إدارة المنصة" aria-label="Contact" style="background:#00C2A8; color:#fff; padding:8px 16px; border-radius:6px; text-decoration:none; margin-right:8px;">تواصل معنا</a>
+            <button onclick="location.reload()" title="تحديث بيانات الصفحة" aria-label="Refresh Page" style="background:#CFCFCF; color:#1E1E2F; padding:8px 16px; border-radius:6px; border:none; cursor:pointer; margin-right:8px;">تحديث الصفحة</button>
+        </div>
+        <h2>العملاء</h2>
+        <table>
+            <tr>
+                <th>الاسم</th>
+                <th>النوع</th>
+                <th>الإعدادات</th>
+                <th>تفاصيل</th>
+                <th>تعديل</th>
+                <th>حذف</th>
+            </tr>
+            {% for client in clients %}
+            <tr>
+                <td>{{ client.name }}</td>
+                <td>{{ client.type }}</td>
+                <td>{{ client.settings }}</td>
+                <td>
+                    <a href="/client/{{ client.id }}" style="color:#00C2A8; text-decoration:underline;" aria-label="تفاصيل العميل" title="عرض تفاصيل العميل">عرض</a>
+                </td>
+                <td>
+                    <a href="/edit-client/{{ client.id }}" style="color:#FFB347; text-decoration:underline;" aria-label="تعديل العميل" title="تعديل بيانات العميل">تعديل</a>
+                </td>
+                <td>
+                    <form method="post" action="/delete-client/{{ client.id }}" style="display:inline;">
+                        <button type="submit" style="background:#FF5E5B; color:#fff; border:none; border-radius:6px; padding:4px 10px; cursor:pointer;" aria-label="حذف العميل" title="حذف العميل">حذف</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h2>إضافة عميل جديد</h2>
+        <div style="margin-bottom: 16px; text-align: center;">
+            <a href="/new-client" style="background:#00C2A8; color:#fff; padding:12px 24px; border-radius:6px; text-decoration:none; display:inline-block; margin-bottom:16px;">➕ إنشاء عميل جديد (النموذج المتقدم)</a>
+        </div>
+        <form method="post" action="/add-client">
+            <input type="text" name="name" placeholder="اسم العميل" required aria-label="اسم العميل">
+            <select name="type" aria-label="نوع العميل">
+                <option value="personal">شخصي</option>
+                <option value="business">شركة</option>
+                <option value="content">صانع محتوى</option>
+            </select>
+            <input type="text" name="settings" placeholder="إعدادات إضافية" aria-label="إعدادات إضافية">
+            <button type="submit" aria-label="إضافة عميل جديد">إضافة</button>
+        </form>
+    </div>
+    <script>
+        // Toast logic
+        function showToast(msg) {
+            var toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(function(){ toast.style.display = 'none'; }, 2500);
+        }
+        {% if client_added %}
+            showToast("تم إضافة العميل بنجاح!");
+        {% endif %}
+        {% if client_deleted %}
+            showToast("تم حذف العميل بنجاح!");
+        {% endif %}
+    </script>
+</body>
+</html>

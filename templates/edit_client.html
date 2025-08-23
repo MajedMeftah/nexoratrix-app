@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>تعديل العميل - NexoraTrix</title>
+    <style>
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background: #1E1E2F; 
+            color: #CFCFCF; 
+            direction: rtl;
+            text-align: right;
+        }
+        .container { 
+            max-width: 600px; 
+            margin: 40px auto; 
+            background: #232347; 
+            border-radius: 12px; 
+            padding: 32px; 
+            box-shadow: 0 4px 24px #4B00B522; 
+        }
+        h1 { 
+            color: #4B00B5; 
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00C2A8;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #333;
+            border-radius: 6px;
+            background: #1E1E2F;
+            color: #CFCFCF;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #00C2A8;
+            outline: none;
+        }
+        .button {
+            background: #4B00B5;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 8px 8px 8px 0;
+            font-size: 16px;
+        }
+        .button:hover {
+            background: #6B20D5;
+        }
+        .button.secondary {
+            background: #333;
+        }
+        .button.secondary:hover {
+            background: #555;
+        }
+        .button.danger {
+            background: #FF5E5B;
+        }
+        .button.danger:hover {
+            background: #FF7E7B;
+        }
+        .alert {
+            padding: 16px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .alert.success {
+            background: #00C2A8;
+            color: #1E1E2F;
+        }
+        .alert.error {
+            background: #FF5E5B;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✏️ تعديل العميل</h1>
+        
+        <div style="text-align: center; margin-bottom: 32px;">
+            <a href="/" class="button secondary">🏠 العودة للوحة التحكم</a>
+            {% if client %}
+            <a href="/client/{{ client.id }}" class="button secondary">👁️ عرض تفاصيل العميل</a>
+            {% endif %}
+        </div>
+
+        {% if updated %}
+        <div class="alert success">
+            ✅ تم تحديث بيانات العميل بنجاح!
+        </div>
+        {% endif %}
+
+        {% if client %}
+        <form method="post" action="/edit-client/{{ client.id }}">
+            <div class="form-group">
+                <label for="name">اسم العميل:</label>
+                <input type="text" id="name" name="name" value="{{ client.name }}" required aria-label="اسم العميل">
+            </div>
+
+            <div class="form-group">
+                <label for="type">نوع العميل:</label>
+                <select id="type" name="type" aria-label="نوع العميل">
+                    <option value="personal" {% if client.type == 'personal' %}selected{% endif %}>شخصي</option>
+                    <option value="business" {% if client.type == 'business' %}selected{% endif %}>شركة</option>
+                    <option value="content" {% if client.type == 'content' %}selected{% endif %}>صانع محتوى</option>
+                    <option value="trading" {% if client.type == 'trading' %}selected{% endif %}>تداول</option>
+                    <option value="education" {% if client.type == 'education' %}selected{% endif %}>تعليم</option>
+                    <option value="legal" {% if client.type == 'legal' %}selected{% endif %}>قانون</option>
+                    <option value="ecommerce" {% if client.type == 'ecommerce' %}selected{% endif %}>تجارة إلكترونية</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="settings">الإعدادات (JSON أو نص حر):</label>
+                <textarea id="settings" name="settings" rows="4" placeholder='{"language": "ar", "theme": "dark"}' aria-label="إعدادات العميل">{{ client.settings or '' }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>إحصائيات العميل:</label>
+                <p style="color: #CFCFCF; background: #1E1E2F; padding: 12px; border-radius: 6px;">
+                    عدد الزيارات: <strong style="color: #00C2A8;">{{ client.visits or 0 }}</strong><br>
+                    تاريخ الإنشاء: <strong style="color: #00C2A8;">متوفر قريباً</strong>
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 32px;">
+                <button type="submit" class="button">💾 حفظ التعديلات</button>
+                <a href="/" class="button secondary">❌ إلغاء</a>
+                <form method="post" action="/delete-client/{{ client.id }}" style="display: inline;" 
+                      onsubmit="return confirm('هل أنت متأكد من حذف هذا العميل؟ هذا الإجراء لا يمكن التراجع عنه.')">
+                    <button type="submit" class="button danger">🗑️ حذف العميل</button>
+                </form>
+            </div>
+        </form>
+        {% else %}
+        <div class="alert error">
+            ❌ العميل غير موجود أو تم حذفه.
+        </div>
+        <div style="text-align: center;">
+            <a href="/" class="button">العودة للوحة التحكم</a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

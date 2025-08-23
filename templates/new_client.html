@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إنشاء عميل جديد - NexoraTrix</title>
+    <style>
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background: #1E1E2F; 
+            color: #CFCFCF; 
+            direction: rtl;
+            text-align: right;
+        }
+        .container { 
+            max-width: 700px; 
+            margin: 40px auto; 
+            background: #232347; 
+            border-radius: 12px; 
+            padding: 32px; 
+            box-shadow: 0 4px 24px #4B00B522; 
+        }
+        h1 { 
+            color: #4B00B5; 
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .form-section {
+            margin-bottom: 32px;
+            padding: 24px;
+            background: #1E1E2F;
+            border-radius: 8px;
+            border: 2px solid #333;
+        }
+        .form-section h3 {
+            color: #00C2A8;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #CFCFCF;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #333;
+            border-radius: 6px;
+            background: #232347;
+            color: #CFCFCF;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #00C2A8;
+            outline: none;
+        }
+        .client-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .client-type-card {
+            background: #232347;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .client-type-card:hover {
+            border-color: #4B00B5;
+            transform: translateY(-2px);
+        }
+        .client-type-card.selected {
+            border-color: #00C2A8;
+            background: #1E2F1E;
+        }
+        .client-type-icon {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+        .client-type-title {
+            font-weight: bold;
+            color: #CFCFCF;
+            margin-bottom: 4px;
+        }
+        .client-type-desc {
+            font-size: 0.9em;
+            color: #999;
+        }
+        .button {
+            background: #4B00B5;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 8px 8px 8px 0;
+            font-size: 16px;
+        }
+        .button:hover {
+            background: #6B20D5;
+        }
+        .button.secondary {
+            background: #333;
+        }
+        .button.secondary:hover {
+            background: #555;
+        }
+        .button.success {
+            background: #00C2A8;
+        }
+        .button.success:hover {
+            background: #20E2C8;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+        }
+        .feature-list li {
+            padding: 8px 0;
+            color: #CFCFCF;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .feature-list li:before {
+            content: "✓";
+            color: #00C2A8;
+            font-weight: bold;
+        }
+        .tip-box {
+            background: #2F2F1E;
+            border: 1px solid #FFB347;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .tip-box .tip-title {
+            color: #FFB347;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>➕ إنشاء عميل ذكي جديد</h1>
+        
+        <div class="nav-buttons">
+            <a href="/" class="button secondary">🏠 العودة للوحة التحكم</a>
+            <a href="/modules" class="button secondary">🧩 الوحدات المتاحة</a>
+        </div>
+
+        <form method="post" action="/add-client" id="newClientForm">
+            <div class="form-section">
+                <h3>📝 معلومات أساسية</h3>
+                <div class="form-group">
+                    <label for="name">اسم العميل الذكي:</label>
+                    <input type="text" id="name" name="name" required 
+                           placeholder="مثال: عميلي التجاري، مساعد المحتوى، مستشار الاستثمار"
+                           aria-label="اسم العميل">
+                    <small style="color: #999; display: block; margin-top: 4px;">
+                        اختر اسماً وصفياً يعبر عن الغرض من هذا العميل الذكي
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>🎯 نوع العميل والتخصص</h3>
+                <input type="hidden" id="selectedType" name="type" value="personal">
+                
+                <div class="client-types">
+                    <div class="client-type-card" onclick="selectClientType('personal', this)">
+                        <div class="client-type-icon">👤</div>
+                        <div class="client-type-title">شخصي</div>
+                        <div class="client-type-desc">للاستخدام الشخصي والمهام اليومية</div>
+                    </div>
+                    
+                    <div class="client-type-card" onclick="selectClientType('business', this)">
+                        <div class="client-type-icon">🏢</div>
+                        <div class="client-type-title">شركة</div>
+                        <div class="client-type-desc">للشركات والمؤسسات التجارية</div>
+                    </div>
+                    
+                    <div class="client-type-card" onclick="selectClientType('content', this)">
+                        <div class="client-type-icon">✍️</div>
+                        <div class="client-type-title">صانع محتوى</div>
+                        <div class="client-type-desc">للمبدعين ومنشئي المحتوى</div>
+                    </div>
+                    
+                    <div class="client-type-card" onclick="selectClientType('trading', this)">
+                        <div class="client-type-icon">📈</div>
+                        <div class="client-type-title">تداول</div>
+                        <div class="client-type-desc">للمتداولين والمحللين الماليين</div>
+                    </div>
+                    
+                    <div class="client-type-card" onclick="selectClientType('education', this)">
+                        <div class="client-type-icon">🎓</div>
+                        <div class="client-type-title">تعليم</div>
+                        <div class="client-type-desc">للتعليم والتدريب</div>
+                    </div>
+                    
+                    <div class="client-type-card" onclick="selectClientType('legal', this)">
+                        <div class="client-type-icon">⚖️</div>
+                        <div class="client-type-title">قانون</div>
+                        <div class="client-type-desc">للمحامين والاستشاريين القانونيين</div>
+                    </div>
+                    
+                    <div class="client-type-card" onclick="selectClientType('ecommerce', this)">
+                        <div class="client-type-icon">🛒</div>
+                        <div class="client-type-title">تجارة إلكترونية</div>
+                        <div class="client-type-desc">للمتاجر الإلكترونية والتسويق</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>⚙️ إعدادات متقدمة</h3>
+                <div class="form-group">
+                    <label for="settings">إعدادات JSON (اختيارية):</label>
+                    <textarea id="settings" name="settings" rows="6" 
+                              placeholder='{"language": "ar", "theme": "dark", "max_tokens": 1000, "temperature": 0.7}'
+                              aria-label="إعدادات العميل">{"language": "ar", "theme": "dark", "region": "MENA"}</textarea>
+                    <small style="color: #999; display: block; margin-top: 4px;">
+                        إعدادات متقدمة بصيغة JSON للتحكم في سلوك العميل الذكي
+                    </small>
+                </div>
+
+                <div class="tip-box">
+                    <div class="tip-title">💡 نصائح للإعدادات:</div>
+                    <ul class="feature-list" style="margin: 8px 0;">
+                        <li>language: لغة التفاعل (ar/en)</li>
+                        <li>theme: مظهر الواجهة (dark/light)</li>
+                        <li>region: المنطقة الجغرافية (MENA/US/EU)</li>
+                        <li>max_tokens: طول الاستجابة القصوى</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>🚀 الوحدات المُفعلة</h3>
+                <p style="color: #999; margin-bottom: 16px;">
+                    الوحدات التالية ستكون متاحة تلقائياً لهذا العميل:
+                </p>
+                <ul class="feature-list">
+                    <li>Content Studio - توليد المحتوى</li>
+                    <li>Sentiment Analyzer - تحليل المشاعر</li>
+                    <li>Social Sync Engine - إدارة المنصات</li>
+                    <li>Performance Monitor - مراقبة الأداء</li>
+                </ul>
+                <p style="color: #00C2A8; font-size: 0.9em; margin-top: 12px;">
+                    يمكنك تفعيل أو تعطيل أي وحدة لاحقاً من صفحة إدارة العميل
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 32px; padding: 24px; background: #1E1E2F; border-radius: 8px;">
+                <button type="submit" class="button success" style="font-size: 18px; padding: 16px 32px;">
+                    🎯 إنشاء العميل الذكي
+                </button>
+                <a href="/" class="button secondary">❌ إلغاء</a>
+                
+                <p style="color: #999; margin-top: 16px; font-size: 0.9em;">
+                    سيتم إنشاء العميل الذكي وإعداده تلقائياً بناءً على المعلومات المدخلة
+                </p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function selectClientType(type, element) {
+            // Remove selected class from all cards
+            document.querySelectorAll('.client-type-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked card
+            element.classList.add('selected');
+            
+            // Update hidden input value
+            document.getElementById('selectedType').value = type;
+        }
+        
+        // Select first option by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstCard = document.querySelector('.client-type-card');
+            if (firstCard) {
+                firstCard.classList.add('selected');
+            }
+        });
+        
+        // Form validation
+        document.getElementById('newClientForm').addEventListener('submit', function(e) {
+            const name = document.getElementById('name').value.trim();
+            const type = document.getElementById('selectedType').value;
+            
+            if (!name) {
+                alert('يرجى إدخال اسم العميل');
+                e.preventDefault();
+                return;
+            }
+            
+            if (!type) {
+                alert('يرجى اختيار نوع العميل');
+                e.preventDefault();
+                return;
+            }
+        });
+    </script>
+</body>
+</html>

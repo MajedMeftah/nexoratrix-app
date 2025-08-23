@@ -1,0 +1,7 @@
+aiofiles
+databases
+fastapi
+jinja2
+python-multipart
+sqlalchemy>=1.4
+uvicorn
