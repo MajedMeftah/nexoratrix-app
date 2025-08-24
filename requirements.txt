@@ -5,3 +5,15 @@ jinja2
 python-multipart
 sqlalchemy>=1.4
 uvicorn
+requests>=2.28.0
+asyncio
+threading
+sqlite3
+ast
+subprocess
+hashlib
+pickle
+pathlib
+dataclasses
+concurrent.futures
+importlib.util
