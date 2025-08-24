@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إعدادات NexoraTrix</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>إعدادات NexoraTrix</h1>
+        <form action="/settings" method="post">
+            <label for="name">اسم المنصة:</label>
+            <input type="text" id="name" name="name" value="{{ name }}" required>
+            
+            <label for="main_color">اللون الرئيسي:</label>
+            <input type="color" id="main_color" name="main_color" value="{{ main_color }}" required>
+            
+            <button type="submit">حفظ الإعدادات</button>
+        </form>
+        {% if saved %}
+            <p>تم حفظ الإعدادات بنجاح!</p>
+        {% endif %}
+    </div>
+</body>
+</html>

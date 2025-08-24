@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة عميل جديد</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>إضافة عميل جديد</h1>
+        <form action="/add-client" method="post">
+            <label for="name">اسم العميل:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="type">نوع العميل:</label>
+            <input type="text" id="type" name="type" required>
+
+            <label for="settings">الإعدادات:</label>
+            <textarea id="settings" name="settings"></textarea>
+
+            <button type="submit">إضافة عميل</button>
+        </form>
+        <a href="/">العودة إلى الصفحة الرئيسية</a>
+    </div>
+</body>
+</html>

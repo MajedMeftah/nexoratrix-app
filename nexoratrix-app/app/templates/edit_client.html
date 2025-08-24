@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعديل عميل</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>تعديل عميل</h1>
+        <form action="/edit-client/{{ client.id }}" method="post">
+            <label for="name">الاسم:</label>
+            <input type="text" id="name" name="name" value="{{ client.name }}" required>
+
+            <label for="type">النوع:</label>
+            <input type="text" id="type" name="type" value="{{ client.type }}" required>
+
+            <label for="settings">الإعدادات:</label>
+            <textarea id="settings" name="settings">{{ client.settings }}</textarea>
+
+            <button type="submit">حفظ التغييرات</button>
+        </form>
+        {% if updated %}
+            <p>تم تحديث العميل بنجاح!</p>
+        {% endif %}
+        <a href="/dashboard">العودة إلى لوحة التحكم</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>مراقبة الأداء</title>
+</head>
+<body>
+    <div class="container">
+        <h1>مراقبة أداء العميل</h1>
+        {% if client %}
+            <h2>تفاصيل العميل: {{ client.name }}</h2>
+            <p>عدد الزيارات: {{ visits }}</p>
+        {% else %}
+            <p>لا توجد معلومات عن العميل.</p>
+        {% endif %}
+        <form action="/performance-monitor" method="post">
+            <label for="name">اسم العميل:</label>
+            <input type="text" id="name" name="name" required>
+            <button type="submit">مراقبة الأداء</button>
+        </form>
+    </div>
+</body>
+</html>

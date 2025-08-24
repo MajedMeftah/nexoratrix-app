@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محلل المشاعر - NexoraTrix</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>تحليل المشاعر</h1>
+        <form action="/sentiment-analyzer" method="post">
+            <label for="text">أدخل النص لتحليل المشاعر:</label>
+            <textarea id="text" name="text" rows="4" required></textarea>
+            <button type="submit">تحليل</button>
+        </form>
+        {% if result %}
+            <h2>نتيجة التحليل: {{ result }}</h2>
+            <p>النص المدخل: {{ text }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

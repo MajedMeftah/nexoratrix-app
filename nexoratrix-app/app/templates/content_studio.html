@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استوديو المحتوى - NexoraTrix</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>استوديو المحتوى</h1>
+        <form action="/content-studio" method="post">
+            <label for="prompt">أدخل المحتوى الذي ترغب في توليده:</label>
+            <textarea id="prompt" name="prompt" rows="4" required></textarea>
+            <button type="submit">توليد المحتوى</button>
+        </form>
+        {% if output %}
+            <h2>المحتوى المولد:</h2>
+            <p>{{ output }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

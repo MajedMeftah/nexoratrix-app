@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ platform_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>مرحبًا بكم في {{ platform_name }}</h1>
+        <nav>
+            <ul>
+                <li><a href="/">الرئيسية</a></li>
+                <li><a href="/dashboard">لوحة التحكم</a></li>
+                <li><a href="/settings">الإعدادات</a></li>
+                <li><a href="/help">المساعدة</a></li>
+                <li><a href="/about">حول</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>نظرة عامة</h2>
+            <p>مرحبًا بكم في NexoraTrix، المنصة الذكية التي تساعدكم في إدارة العملاء وتحليل البيانات.</p>
+        </section>
+        <section>
+            <h2>الوحدات المتاحة</h2>
+            <ul>
+                <li><a href="/content-studio">استوديو المحتوى</a></li>
+                <li><a href="/sentiment-analyzer">محلل المشاعر</a></li>
+                <li><a href="/social-sync">مزامنة الوسائط الاجتماعية</a></li>
+                <li><a href="/performance-monitor">مراقبة الأداء</a></li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; {{ platform_name }} 2023</p>
+    </footer>
+</body>
+</html>

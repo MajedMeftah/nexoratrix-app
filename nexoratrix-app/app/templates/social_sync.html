@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مزامنة المحتوى الاجتماعي</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>مزامنة المحتوى الاجتماعي</h1>
+        <form method="post">
+            <label for="platform">اختر المنصة:</label>
+            <select name="platform" id="platform" required>
+                <option value="facebook">فيسبوك</option>
+                <option value="twitter">تويتر</option>
+                <option value="instagram">إنستغرام</option>
+                <option value="linkedin">لينكد إن</option>
+            </select>
+
+            <label for="content">المحتوى:</label>
+            <textarea name="content" id="content" rows="4" required></textarea>
+
+            <button type="submit">نشر المحتوى</button>
+        </form>
+
+        {% if result %}
+            <div class="result">
+                <h2>نتيجة المزامنة:</h2>
+                <p>{{ result }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

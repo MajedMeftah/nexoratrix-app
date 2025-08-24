@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل العميل</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>تفاصيل العميل: {{ client.name }}</h1>
+        <p><strong>نوع العميل:</strong> {{ client.type }}</p>
+        <p><strong>الإعدادات:</strong> {{ client.settings }}</p>
+        <p><strong>عدد الزيارات:</strong> {{ client.visits }}</p>
+
+        <h2>الوحدات الذكية</h2>
+        <ul>
+            {% for module in modules_tabs %}
+                <li><a href="{{ module.url }}">{{ module.name }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <a href="/" class="btn">العودة إلى الصفحة الرئيسية</a>
+        <a href="/edit-client/{{ client.id }}" class="btn">تعديل العميل</a>
+        <form action="/delete-client/{{ client.id }}" method="post" style="display:inline;">
+            <button type="submit" class="btn">حذف العميل</button>
+        </form>
+    </div>
+</body>
+</html>

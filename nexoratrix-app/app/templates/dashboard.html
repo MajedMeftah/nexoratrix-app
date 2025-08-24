@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - NexoraTrix</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>لوحة التحكم</h1>
+        <nav>
+            <a href="/">الصفحة الرئيسية</a>
+            <a href="/settings">الإعدادات</a>
+            <a href="/help">المساعدة</a>
+            <a href="/logout">تسجيل الخروج</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>إحصائيات العملاء</h2>
+            <p>عدد العملاء: {{ client_count }}</p>
+            <p>عدد الوحدات النشطة: {{ active_modules }}</p>
+        </section>
+        <section>
+            <h2>قائمة العملاء</h2>
+            <ul>
+                {% for client in clients %}
+                    <li>
+                        <a href="/client/{{ client.id }}">{{ client.name }}</a> - {{ client.type }} - الزيارات: {{ client.visits }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% if client_added %}
+            <div class="notification">تم إضافة عميل جديد بنجاح!</div>
+        {% endif %}
+        {% if client_deleted %}
+            <div class="notification">تم حذف العميل بنجاح!</div>
+        {% endif %}
+    </main>
+    <footer>
+        <p>&copy; 2023 NexoraTrix. جميع الحقوق محفوظة.</p>
+    </footer>
+</body>
+</html>
