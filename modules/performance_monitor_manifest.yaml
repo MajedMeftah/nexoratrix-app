@@ -1,0 +1,75 @@
+name: "Performance Monitor"
+version: "1.0.0"
+description: "وحدة مراقبة أداء العملاء والنظام"
+author: "NexoraTrix Team"
+category: "Analytics"
+tags:
+  - "performance"
+  - "monitoring"
+  - "analytics"
+  - "metrics"
+
+# معلومات الوحدة
+module_info:
+  id: "performance_monitor"
+  display_name: "مراقب الأداء"
+  icon: "📊"
+  status: "active"
+  
+# الإعدادات المطلوبة
+settings:
+  - name: "monitoring_interval"
+    type: "integer"
+    default: 60
+    description: "فترة المراقبة بالثواني"
+  - name: "metrics_retention"
+    type: "integer"
+    default: 30
+    description: "مدة حفظ البيانات بالأيام"
+  - name: "alert_thresholds"
+    type: "object"
+    default: {"cpu": 80, "memory": 85, "response_time": 1000}
+    description: "عتبات التنبيه للمؤشرات"
+
+# المتطلبات
+requirements:
+  python: ">=3.11"
+  dependencies:
+    - "psutil"
+    - "matplotlib"
+    - "pandas"
+  
+# واجهة برمجة التطبيقات
+api:
+  endpoints:
+    - path: "/performance-monitor"
+      method: "GET"
+      description: "عرض واجهة مراقبة الأداء"
+    - path: "/performance-monitor"
+      method: "POST"
+      description: "البحث عن أداء عميل معين"
+      parameters:
+        - name: "name"
+          type: "string"
+          required: true
+
+# الصلاحيات المطلوبة
+permissions:
+  - "performance.monitor"
+  - "performance.view"
+  - "client.read"
+
+# معلومات الأداء
+performance:
+  memory_usage: "medium"
+  cpu_usage: "low"
+  network_usage: "low"
+
+# الإصدار والتحديثات
+changelog:
+  - version: "1.0.0"
+    date: "2024-01-01"
+    changes:
+      - "الإصدار الأولي من مراقب الأداء"
+      - "تتبع زيارات العملاء"
+      - "واجهة بسيطة لعرض إحصائيات الاستخدام"

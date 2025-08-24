@@ -1,0 +1,73 @@
+name: "Content Studio"
+version: "1.0.0"
+description: "وحدة توليد المحتوى النصي والمرئي"
+author: "NexoraTrix Team"
+category: "Content Generation"
+tags:
+  - "content"
+  - "generation"
+  - "text"
+  - "ai"
+
+# معلومات الوحدة
+module_info:
+  id: "content_studio"
+  display_name: "استوديو المحتوى"
+  icon: "✍️"
+  status: "active"
+  
+# الإعدادات المطلوبة
+settings:
+  - name: "max_length"
+    type: "integer"
+    default: 1000
+    description: "الحد الأقصى لطول المحتوى المولد"
+  - name: "language"
+    type: "string"
+    default: "arabic"
+    description: "اللغة الافتراضية لتوليد المحتوى"
+  - name: "tone"
+    type: "string"
+    default: "professional"
+    description: "نبرة المحتوى (professional, casual, formal)"
+
+# المتطلبات
+requirements:
+  python: ">=3.11"
+  dependencies:
+    - "transformers"
+    - "torch"
+  
+# واجهة برمجة التطبيقات
+api:
+  endpoints:
+    - path: "/content-studio"
+      method: "GET"
+      description: "عرض واجهة توليد المحتوى"
+    - path: "/content-studio"
+      method: "POST"
+      description: "توليد محتوى جديد"
+      parameters:
+        - name: "prompt"
+          type: "string"
+          required: true
+
+# الصلاحيات المطلوبة
+permissions:
+  - "content.generate"
+  - "client.read"
+
+# معلومات الأداء
+performance:
+  memory_usage: "low"
+  cpu_usage: "medium"
+  network_usage: "low"
+
+# الإصدار والتحديثات
+changelog:
+  - version: "1.0.0"
+    date: "2024-01-01"
+    changes:
+      - "الإصدار الأولي من وحدة توليد المحتوى"
+      - "دعم توليد النصوص باللغة العربية"
+      - "واجهة مستخدم بسيطة وسهلة الاستخدام"
