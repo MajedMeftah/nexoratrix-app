@@ -1,0 +1,73 @@
+name: "Sentiment Analyzer"
+version: "1.0.0"
+description: "وحدة تحليل المشاعر في النصوص"
+author: "NexoraTrix Team"
+category: "Text Analysis"
+tags:
+  - "sentiment"
+  - "analysis"
+  - "emotions"
+  - "nlp"
+
+# معلومات الوحدة
+module_info:
+  id: "sentiment_analyzer"
+  display_name: "محلل المشاعر"
+  icon: "😊"
+  status: "active"
+  
+# الإعدادات المطلوبة
+settings:
+  - name: "language"
+    type: "string"
+    default: "arabic"
+    description: "اللغة المستخدمة في التحليل"
+  - name: "sensitivity"
+    type: "string"
+    default: "medium"
+    description: "حساسية التحليل (low, medium, high)"
+  - name: "output_format"
+    type: "string"
+    default: "simple"
+    description: "تنسيق النتائج (simple, detailed, scores)"
+
+# المتطلبات
+requirements:
+  python: ">=3.11"
+  dependencies:
+    - "nltk"
+    - "textblob"
+  
+# واجهة برمجة التطبيقات
+api:
+  endpoints:
+    - path: "/sentiment-analyzer"
+      method: "GET"
+      description: "عرض واجهة تحليل المشاعر"
+    - path: "/sentiment-analyzer"
+      method: "POST"
+      description: "تحليل مشاعر النص"
+      parameters:
+        - name: "text"
+          type: "string"
+          required: true
+
+# الصلاحيات المطلوبة
+permissions:
+  - "sentiment.analyze"
+  - "client.read"
+
+# معلومات الأداء
+performance:
+  memory_usage: "low"
+  cpu_usage: "low"
+  network_usage: "none"
+
+# الإصدار والتحديثات
+changelog:
+  - version: "1.0.0"
+    date: "2024-01-01"
+    changes:
+      - "الإصدار الأولي من محلل المشاعر"
+      - "دعم تحليل النصوص العربية"
+      - "خوارزمية بسيطة لتحديد المشاعر الإيجابية والسلبية"
