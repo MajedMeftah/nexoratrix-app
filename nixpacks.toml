@@ -1,5 +1,6 @@
 [phases.setup]
 nixPkgs = ["python311", "pip"]
+cmds = ["ln -sf /nix/store/*/bin/python3.11 /usr/local/bin/python"]
 
 [phases.install]
 cmds = ["pip install -r requirements.txt"]
