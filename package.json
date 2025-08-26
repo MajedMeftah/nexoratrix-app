@@ -1,0 +1,12 @@
+{
+  "name": "nexoratrix",
+  "version": "1.0.0",
+  "description": "NexoraTrix AI Platform",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Python project - no build needed'",
+    "start": "python main.py"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
